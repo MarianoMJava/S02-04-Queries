@@ -1,0 +1,36 @@
+//Ejercicio1
+db.restaurantscollection.find()
+//Ejercicio2
+db.restaurantscollection.find({},{restaurant_id:1, name:1, borough:1, cuisine:1 })
+//Ejercicio3
+db.restaurantscollection.find({},{restaurant_id:1, name:1, borough:1, cuisine:1, campo_id:0 }) //El campo_id no existe en la bd
+//Ejercicio4
+db.restaurantscollection.find({},{restaurant_id:1, name:1, borough:1, 'address.zipcode':1, campo_id:0 }) //El campo_id no existe en la bd
+//Ejercicio5
+db.restaurantscollection.find({borough: "Bronx"})
+//Ejercicio6
+db.restaurantscollection.find({borough: "Bronx"}).limit(5)
+//Ejercicio7
+db.restaurantscollection.find({borough: "Bronx"}).skip(5).limit(5)
+//Ejercicio8
+db.restaurantscollection.find({"grades.score": {"$gt":90}})
+//Ejercicio9
+db.restaurantscollection.find({"$and" : [{"grades.score" : {"$gt" : 90}},{"grades.score" : {"$lt" : 100}}]}
+//Ejercicio10
+db.restaurantscollection.find({"address.coord.0" : {"$lt":-95.754168}})
+//Ejercicio11
+db.restaurantscollection.find({$and : [{"cuisine":{"$ne":"American "}},{"grades.score":{"$gt":70}},{"address.cood.0":{"$lt":-65.754168}}]})
+//Ejercicio12
+db.restaurantscollection.find({$and : [{"cuisine":{"$ne":"American "}},{"grades.score":{"$gt":70}},{"address.cood.1":{"$lt":-65.754168}}]})
+//Ejercicio13
+db.restaurantscollection.find({$and : [{"cuisine" : {$ne : "American "}}, {"grades.grade" : "A"}, {"borough" : {$ne : "Brooklyn "}}]}).sort({cuisine : -1})
+//Ejercicio14
+db.restaurantscollection.find({"name" : { $regex: /^Wil.*/}}, {_id:0, restaurant_id:1, name:1, borough:1, cuisine:1})
+//Ejercicio15
+db.restaurantscollection.find({"name" : { $regex: /.*ces$/}}, {_id:0, restaurant_id:1, name:1, borough:1, cuisine:1})
+//Ejercicio16
+db.restaurantscollection.find({"name" : { $regex: /Reg/}}, {_id:0, restaurant_id:1, name:1, borough:1, cuisine:1})
+//Ejercicio17
+db.rest.find({borough: "Bronx", cuisine: {$in: ["American ","Chinese"]}}, {_id:0, restaurant_id:1, name:1, borough:1, cuisine:1})
+//Ejercicio18
+db.restaurantscollection.find({borough: {$in: ["Queens","Staten Island", "Bronx", "Brooklyn"]}}, {_id:0, restaurant_id:1, name:1, borough:1, cuisine:1})
